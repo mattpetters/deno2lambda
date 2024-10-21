@@ -70,6 +70,8 @@ Now you can create a new AWS Lambda function from the AWS Management Console.
 
 # Helper scripts/monorepo structure for multiple functions
 
+- First time through creating the function use the steps above
+- after that, you can use the deploy helper:
 - `deploy.sh` - deploys the function to AWS Lambda, just pass the folder name as an argument
 - to add a new function, copy the folder and change the dockerfile as needed
 - NOTE: AWS region `us-east-1` is hardcoded in the deploy script, change as needed
