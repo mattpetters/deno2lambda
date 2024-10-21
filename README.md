@@ -16,34 +16,35 @@ Leverages the `aws-lambda-adapter` and docker
 docker build -t hello-world .
 ```
 
-2. Create the ECR repository + push
+2. Create the ECR repository + push (note: change region as needed)
 
 ```bash
-aws ecr create-repository --repository-name hello-world --region us-east-1 | grep repositoryUri
+AWS_REGION=us-west-2
+aws ecr create-repository --repository-name hello-world --region $AWS_REGION | grep repositoryUri
 
 
 ```
 
-This should output a repository URI that looks like <account_id>.dkr.ecr.us-east-1.amazonaws.com/hello-world.
+This should output a repository URI that looks like <account_id>.dkr.ecr.us-west-2.amazonaws.com/hello-world.
 
 
 then:
 
 ```bash
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account_id>.dkr.ecr.us-east-1.amazonaws.com
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account_id>.dkr.ecr.us-west-2.amazonaws.com
 ```
 
 
 Tag the Docker image with the repository URI, again using the repository URI from the previous steps:
 
 ```bash
-docker tag hello-world:latest <account_id>.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest
+docker tag hello-world:latest <account_id>.dkr.ecr.us-west-2.amazonaws.com/hello-world:latest
 ```
 
 Finally, push the Docker image to the ECR repository, using the repository URI from the previous steps:
 
 ```bash
-docker push <account_id>.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest
+docker push <account_id>.dkr.ecr.us-west-2.amazonaws.com/hello-world:latest
 
 ```
 
@@ -74,4 +75,4 @@ Now you can create a new AWS Lambda function from the AWS Management Console.
 - after that, you can use the deploy helper:
 - `deploy.sh` - deploys the function to AWS Lambda, just pass the folder name as an argument
 - to add a new function, copy the folder and change the dockerfile as needed
-- NOTE: AWS region `us-east-1` is hardcoded in the deploy script, change as needed
+- NOTE: AWS region `us-west-2` is hardcoded in the deploy script, change as needed
