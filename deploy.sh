@@ -6,7 +6,7 @@
 
 FUNCTION_NAME=$1
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-REGION="us-east-1"  # Change as needed
+REGION="us-west-2"  # Change as needed
 
 if [ -z "$FUNCTION_NAME" ]
 then
