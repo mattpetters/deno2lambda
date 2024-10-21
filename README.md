@@ -31,7 +31,7 @@ This should output a repository URI that looks like <account_id>.dkr.ecr.us-west
 then:
 
 ```bash
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account_id>.dkr.ecr.us-west-2.amazonaws.com
+aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin <account_id>.dkr.ecr.us-west-2.amazonaws.com
 ```
 
 
